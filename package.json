@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
+    "bootstrap": "yarn migrate:reset && yarn seed:all",
     "start-dev": "nodemon",
     "migrate": "sequelize db:migrate",
     "migrate:reset": "sequelize db:migrate:undo:all && yarn migrate",
