@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "bootstrap": "yarn migrate:reset && yarn seed:all",
+    "bootstrap": "npm run migrate:reset && npm run seed:all",
     "start-dev": "nodemon",
     "migrate": "sequelize db:migrate",
-    "migrate:reset": "sequelize db:migrate:undo:all && yarn migrate",
+    "migrate:reset": "sequelize db:migrate:undo:all && npm run migrate",
     "seed:all": "sequelize db:seed:all",
     "test": "cross-env NODE_ENV=test jest --testTimeout=10000",
-    "pretest": "cross-env NODE_ENV=test yarn migrate:reset && cross-env NODE_ENV=test yarn seed:all"
+    "pretest": "cross-env NODE_ENV=test npm run migrate:reset && cross-env NODE_ENV=test npm run seed:all"
   },
   "repository": {
     "type": "git",
