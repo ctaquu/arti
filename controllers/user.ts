@@ -25,9 +25,8 @@ exports.login = (request, response) => {
             if (utils.isNullOrUndefined(userData)) {
                 console.error('E0009', 'invalid credentials')
                 response.status(httpCodes.UNAUTHORIZED).send({
-                    errors: [
-                        'invalid credentials'
-                    ]
+                    code: 'E0009',
+                    errors: ['invalid credentials']
                 });
 
                 return;
@@ -47,7 +46,9 @@ exports.login = (request, response) => {
                             })
                         })
                 } else {
+                console.error('E0011', 'invalid credentials')
                     response.status(httpCodes.UNAUTHORIZED).send({
+                        code: 'E0011',
                         errors: [
                             'invalid credentials'
                         ]

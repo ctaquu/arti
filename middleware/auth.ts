@@ -19,7 +19,7 @@ module.exports = {
         if (utils.isNullOrUndefined(idToken)) {
             console.error('E0007', 'missing token');
             response.status(httpCodes.BAD_REQUEST).json({
-                status: httpCodes.BAD_REQUEST,
+                code: 'E0007',
                 errors: [
                     'missing token'
                 ],
@@ -41,7 +41,7 @@ module.exports = {
                 if (utils.isNullOrUndefined(userTokenData)) {
                     console.error('E0008', 'invalid or expired token');
                     response.status(httpCodes.UNAUTHORIZED).json({
-                        status: httpCodes.UNAUTHORIZED,
+                        code: 'E0008',
                         errors: [
                             'invalid or expired token'
                         ],
@@ -52,13 +52,13 @@ module.exports = {
                 }
             })
             .catch(e => {
+                console.error('E0006', e);
                 response.status(httpCodes.INTERNAL_SERVER_ERROR).json({
-                    status: httpCodes.INTERNAL_SERVER_ERROR,
+                    code: 'E0006',
                     errors: [
                         e.toString(),
                     ],
                 });
-                console.error('E0006', e);
             })
     }
 };
