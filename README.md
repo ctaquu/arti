@@ -2,12 +2,12 @@
 
 - dev database (sqlite) is versioned, but you can run migrations to create your own environment with:
 ```
-yarn bootstrap
+npm run bootstrap
 ```
 
 - local server boot:
 ```
-yarn start-dev
+npm run start-dev
 ```
 
 - access then @:
@@ -17,7 +17,7 @@ http://localhost:3000/api/v1/{{whatever}}
  
 - run tests
 ```
-yarn test
+npm run test
 ```
  
 - documentation:
