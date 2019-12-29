@@ -33,7 +33,7 @@ exports.login = (request, response) => {
                 return;
             }
 
-            if (utils.checkPassword(password, userData.get('password'))) {
+            if (utils.isPasswordValid(password, userData.get('password'))) {
 
                     // creds ok, issue new token
                     models.UserToken.create({

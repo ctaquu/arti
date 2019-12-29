@@ -2,7 +2,7 @@
  *
  * @param value
  */
-exports.notNullOrUndefined = (value) => {
+exports.isNotNullOrUndefined = (value) => {
     return value !== null && value !== undefined;
 };
 
@@ -28,7 +28,7 @@ exports.hashPassword = (password) => {
  * @param password
  * @param hash
  */
-exports.checkPassword = (password, hash) => {
+exports.isPasswordValid = (password, hash) => {
     const bcrypt = require('bcrypt');
     return bcrypt.compareSync(password, hash);
 };
