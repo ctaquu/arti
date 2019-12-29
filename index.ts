@@ -1,0 +1,1 @@
+require('./common/server').app.listen(3000)
