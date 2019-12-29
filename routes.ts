@@ -2,6 +2,7 @@ import bodyParser from 'body-parser';
 const httpCodes = require("http-status-codes");
 const usersController = require('./controllers/user');
 const articlesController = require('./controllers/article');
+const draftsController = require('./controllers/draft');
 const auth = require('./middleware/auth');
 const permission = require('./middleware/permission');
 const jsonParser = bodyParser.json();
@@ -34,6 +35,8 @@ module.exports = function(router){
     router.get("/ping/protected", (request, response) => {
         response.status(httpCodes.ACCEPTED).json({status: 'protected ping A-OK'});
     });
+
+    /** ARTICLES **/
 
     /**
      * list all articles
@@ -100,5 +103,47 @@ module.exports = function(router){
         permission.required('id'),
         permission.owner('Article'),
         articlesController.unpublish
+    ]);
+
+    /** (ARTICLE) DRAFTS **/
+
+    /**
+     * list all drafts
+     */
+    router.get('/drafts', jsonParser, [
+        draftsController.list
+    ]);
+
+    /**
+     * get one draft
+     */
+    router.get('/drafts/:id', jsonParser, [
+        permission.required('id'),
+        draftsController.get
+    ]);
+
+    /**
+     * create new article
+     */
+    router.post('/drafts', jsonParser, [
+        permission.required('title', 'description'),
+        draftsController.new
+    ]);
+
+    /**
+     *  edit article
+     */
+    router.patch('/drafts/:id', jsonParser, [
+        permission.required('id', 'title', 'description'),
+        permission.owner('ArticleDraft'),
+        draftsController.edit
+    ]);
+
+    /**
+     * publish draft (create new Article from Draft)
+     */
+    router.patch('/drafts/:id/publish', jsonParser, [
+        permission.required('id'),
+        draftsController.publish
     ]);
 };
