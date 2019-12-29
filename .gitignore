@@ -108,4 +108,4 @@ build/
 .DS_Store
 
 # database for tests
-./database/arti.database.test.sqlite3
+database/arti.database.test.sqlite3
